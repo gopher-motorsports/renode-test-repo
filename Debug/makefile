@@ -46,8 +46,8 @@ renode-test.bin \
 all: renode-test.elf secondary-outputs
 
 # Tool invocations
-renode-test.elf: $(OBJS) $(USER_OBJS) C:\Users\H-O-Cally\Documents\GitHub\renode-test-repo\STM32F072RBTX_FLASH.ld
-	arm-none-eabi-gcc -o "renode-test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\H-O-Cally\Documents\GitHub\renode-test-repo\STM32F072RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="renode-test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+renode-test.elf: $(OBJS) $(USER_OBJS) ../STM32F072RBTX_FLASH.ld
+	arm-none-eabi-gcc -o "renode-test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"../STM32F072RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="renode-test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

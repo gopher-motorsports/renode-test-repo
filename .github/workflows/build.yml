@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install deps
+      run: sudo apt-get install gcc-arm-none-eabi
+    - name: Build
+      working-directory: Debug
+      run: make all -j2
+    - name: Archive list file
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{github.sha}}-list
+        path: Debug/test.list
+    - name: Archive map file
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{github.sha}}-map
+        path: Debug/test.map
+    - name: Archive elf file
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{github.sha}}-elf
+        path: Debug/test.elf
