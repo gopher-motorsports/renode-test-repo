@@ -26,16 +26,16 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{github.sha}}-list
-        path: Debug/test.list
+        path: Debug/renode-test.list
 
     - name: Archive map file
       uses: actions/upload-artifact@v2
       with:
         name: ${{github.sha}}-map
-        path: Debug/test.map
+        path: Debug/renode-test.map
 
     - name: Archive elf file
       uses: actions/upload-artifact@v2
       with:
         name: ${{github.sha}}-elf
-        path: Debug/test.elf
+        path: Debug/renode-test.elf
