@@ -48,7 +48,7 @@ jobs:
         SLACK_CHANNEL: firmware-validation
         SLACK_COLOR: '#3278BD'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: ${{ secrets.ARTIFACT_ROOT_URL }}${{github.sha}}/report.html
+        SLACK_MESSAGE: ${{ secrets.ARTIFACT_ROOT_URL }}/${{github.sha}}/report.html
         SLACK_TITLE: Test Report URL
         SLACK_USERNAME: rtCamp
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
