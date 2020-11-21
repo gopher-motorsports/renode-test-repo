@@ -31,6 +31,7 @@ jobs:
         path: validation/results
         
     - name: Upload results to S3 bucket
+      if: ${{ always() }}
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read
@@ -43,6 +44,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
     - name: Send Slack notification
+      if: ${{ always() }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_CHANNEL: firmware-validation
