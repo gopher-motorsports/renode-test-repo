@@ -21,7 +21,7 @@ jobs:
 
     - name: Run test battery
       working-directory: validation
-      run: docker-compose up
+      run: docker-compose up --exit-code-from val
       
     - name: Archive test results
       if: ${{ always() }}
