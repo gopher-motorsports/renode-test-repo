@@ -21,8 +21,8 @@ Should Handle Button Press
 
     Start Emulation
 
-    Execute Command         lt AssertState False 1
-    Execute Command         sysbus.gpioPortB.button Press
     Execute Command         lt AssertState True 1
-    Execute Command         sysbus.gpioPortB.button Release
+    Execute Command         sysbus.gpioPortB.button Press
     Execute Command         lt AssertState False 1
+    Execute Command         sysbus.gpioPortB.button Release
+    Execute Command         lt AssertState True 1
