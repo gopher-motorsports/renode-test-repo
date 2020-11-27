@@ -1,4 +1,5 @@
-# This is a basic workflow to help you get started with Actions
+# Builds and executes SIL tests using renode emulator.
+# Archives and uploads results
 
 name: SIL Tests
 
@@ -7,21 +8,18 @@ on:
   pull_request:
 
 jobs:      
-  sil-tests:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     
-    - name: Install build toolchain
-      run: sudo apt-get install gcc-arm-none-eabi
-    
     - name: Build
-      working-directory: Debug
-      run: make all -j2
-
-    - name: Run test battery
       working-directory: validation
-      run: docker-compose up --exit-code-from val
+      run: docker-compose up build
+
+    - name: Run tests
+      working-directory: validation
+      run: docker-compose up --exit-code-from val val
       
     - name: Archive test results
       if: ${{ always() }}
@@ -42,15 +40,3 @@ jobs:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
-    - name: Send Slack notification
-      if: ${{ always() }}
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: firmware-validation
-        SLACK_COLOR: '#3278BD'
-        SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: ${{ secrets.ARTIFACT_ROOT_URL }}/${{github.sha}}/report.html
-        SLACK_TITLE: Test Report URL
-        SLACK_USERNAME: rtCamp
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

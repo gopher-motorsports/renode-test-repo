@@ -16,3 +16,17 @@ services:
     # command: tail -F anything
     working_dir: /opt/renode/tests
     command: /opt/renode/tests/test.sh -t /opt/renode/tests/platforms/tests.yaml -r /opt/renode/tests/test_results
+
+  puncover:
+    container_name: test_puncover
+    image: gophermotorsports/puncover:latest
+    volumes: 
+      - ./analysis:/puncover/
+      - ../:/code/
+
+  build:
+    container_name: test_build
+    image: gophermotorsports/build:latest
+    volumes: 
+      - ../:/code/
+    command: make all -C /code/Debug
