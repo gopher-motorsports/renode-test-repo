@@ -1,5 +1,5 @@
 [![Actions Status](https://github.com/gopher-motorsports/renode-test-repo/workflows/Build/badge.svg)](https://github.com/gopher-motorsports/renode-test-repo/actions?query=workflow%3ABuild)
-[![Actions Status](https://github.com/gopher-motorsports/renode-test-repo/workflows/Test/badge.svg)](https://github.com/gopher-motorsports/renode-test-repo/actions?query=workflow%3ATest)
+[![Actions Status](https://github.com/gopher-motorsports/renode-test-repo/workflows/SIL%20Tests/badge.svg)](https://github.com/gopher-motorsports/renode-test-repo/actions?query=workflow%3ASIL%20Tests)
 
 # renode-test-repo
 This is a skeleton repo to act as a proof-of concept for a dockerized Robot SIL test system running on top of the Renode emulator.
