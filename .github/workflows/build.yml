@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      
+
     - name: Build
       working-directory: validation
       run: docker-compose up build
@@ -37,6 +37,14 @@ jobs:
       with:
         name: ${{github.sha}}-elf
         path: Debug/renode-test.elf
+
+    - name: Setup landing page
+      uses: cuchi/jinja2-action@v1.2.0
+      with:
+        template: validation/static/test.html
+        output_file: validation/static/test.html
+        variables: |
+          hash=${{github.sha}}
 
     - name: Upload landing page to S3 bucket
       if: ${{ always() }}
