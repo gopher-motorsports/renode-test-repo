@@ -7,5 +7,5 @@ RUN cd puncover
 WORKDIR puncover
 RUN ./setup.py build
 RUN ./setup.py install
-CMD puncover --elf_file /code/Debug/renode-test.elf --src_root /code/ --build_dir /code/Debug/ & wget --recursive --html-extension --page-requisites --convert-links localhost:5000 -nH -q
+#CMD puncover --elf_file /code/Debug/renode-test.elf --src_root /code/ --build_dir /code/Debug/ & wget --recursive --html-extension --page-requisites --convert-links localhost:5000 -nH -q
 #CMD tail -F anything

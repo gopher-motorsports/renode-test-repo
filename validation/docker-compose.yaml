@@ -19,10 +19,11 @@ services:
 
   puncover:
     container_name: test_puncover
-    image: gophermotorsports/puncover:latest
+    image: gophermotorsports/puncover:test-v1
     volumes: 
       - ./analysis:/puncover/
       - ../:/code/
+    command: bash -c "puncover --elf_file /code/Debug/renode-test.elf --src_root /code/ --build_dir /code/Debug/ & wget --recursive --html-extension --page-requisites --convert-links localhost:5000 -nH -q"
 
   build:
     container_name: test_build
